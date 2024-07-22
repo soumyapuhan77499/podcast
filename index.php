@@ -83,7 +83,7 @@
 
         // Set cURL options
         curl_setopt_array($curl, array(
-            CURLOPT_URL => 'http://panditapp.mandirparikrama.com/api/podcasts',
+            CURLOPT_URL => 'http://pandit.33crores.com/api/podcasts',
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => '',
             CURLOPT_MAXREDIRS => 10,
@@ -151,7 +151,7 @@
                     <!-- article content -->
                     <div class="article__content">
                         <h4 style="color: #C1252F">' . $name . '</h4>
-                        <p style="color: black;width: 400px">' . $description . '</p>
+                        <p style="color: black;width: 500px">' . $description . '</p>
                     </div>
                     <!-- end article content -->
                     <!-- share -->
@@ -186,7 +186,7 @@
 
     // Set cURL options
     curl_setopt_array($curl, array(
-        CURLOPT_URL => 'http://panditapp.mandirparikrama.com/api/podcasts',
+        CURLOPT_URL => 'http://pandit.33crores.com/api/podcasts',
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_ENCODING => '',
         CURLOPT_MAXREDIRS => 10,
