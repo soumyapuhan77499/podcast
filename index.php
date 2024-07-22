@@ -31,20 +31,23 @@
 <body>
 	<!-- header -->
 	<header class="header">
-		<div class="header__content">
-			<div class="">
-				<a href="index.html">
-					<img src="img/store/Logo_Black.webp" alt="" style="height: 49px;width: 105px;margin-left: -120px">
-				</a>
-			</div>
-			<nav class="header__nav">
-				<a href="https://poojastore.33crores.com/">Shop</a>
-				<a href="https://pandit.33crores.com/">Book Pandit</a>
-				<a href="https://poojastore.33crores.com/pages/about-us">About Us</a>
-				<a href="https://poojastore.33crores.com/pages/contact">Contact Us</a>
-			</nav>
-		</div>
-	</header>
+  <div class="header__content">
+    <div class="">
+      <a href="index.html">
+        <img src="img/store/Logo_Black.webp" alt="" style="height: 49px;width: 105px;">
+      </a>
+    </div>
+    <nav class="header__nav">
+      <a href="https://poojastore.33crores.com/">Shop</a>
+      <a href="https://pandit.33crores.com/">Book Pandit</a>
+      <a href="https://poojastore.33crores.com/pages/about-us">About Us</a>
+      <a href="https://poojastore.33crores.com/pages/contact">Contact Us</a>
+    </nav>
+    <button class="header__toggle" aria-label="Toggle navigation menu">
+      ☰
+    </button>
+  </div>
+</header>
 	<!-- end header -->
 
 	<!-- sidebar -->
@@ -147,28 +150,26 @@
                         </a>
                     </div>
                 </div>
-                <div class="store-item__description">
-                    <!-- article content -->
-                    <div class="article__content">
-                        <h4 style="color: #C1252F">' . $name . '</h4>
-                        <p style="color: black;width: 500px">' . $description . '</p>
-                    </div>
-                    <!-- end article content -->
-                    <!-- share -->
-                    <div class="share_banner">
-                        <span style="cursor: pointer" class="whatsapp" id="whatsapp-share" data-url="' . $music_url . '"><ion-icon name="logo-whatsapp"></ion-icon></span>
-                        <span style="cursor: pointer" class="facebook" id="facebook-share" data-url="' . $music_url . '"><ion-icon name="logo-facebook"></ion-icon></span>
-                        <span style="cursor: pointer" class="twitter" id="twitter-share" data-url="' . $music_url . '"><i class="fa-brands fa-x-twitter"></i></span>
-                    </div>
-                    <!-- end share -->
-                </div>
+               <div class="store-item__description">
+                        <div class="article__content">
+                          <h4 style="color: #C1252F">' . $name . '</h4>
+                          <p style="color: black">' . $description . '</p>
+                         </div>
+ 
+                        <div class="share_banner">
+                          <span style="cursor: pointer" class="whatsapp" id="whatsapp-share" data-url="' . $music_url . '"><ion-icon name="logo-whatsapp"></ion-icon></span>
+                          <span style="cursor: pointer" class="facebook" id="facebook-share" data-url="' . $music_url . '"><ion-icon name="logo-facebook"></ion-icon></span>
+                          <span style="cursor: pointer" class="twitter" id="twitter-share" data-url="' . $music_url . '"><i class="fa-brands fa-x-twitter"></i></span>
+                        </div>
+                      </div>
+
             </div>';
         }
         ?>
     </div>
 </section>
 
-			<section class="row row--grid">
+<section class="row row--grid">
     <div class="col-12" style="margin-bottom: 30px;">
         <div class="main__title">
             <h2>
@@ -218,8 +219,13 @@
     } elseif (!is_array($podcasts)) {
         echo '<p>API response is not an array.</p>';
     } else {
-        // Display podcasts
+        // Sort the podcasts array by a specific field in ascending order
         if (isset($podcasts['data']) && is_array($podcasts['data'])) {
+            usort($podcasts['data'], function ($a, $b) {
+                return strtotime($a['created_at']) - strtotime($b['created_at']); // Adjust the field accordingly
+            });
+
+            // Display podcasts
             foreach ($podcasts['data'] as $index => $podcast) {
                 // Ensure that each field is set and is a string
                 $name = isset($podcast['name']) ? htmlspecialchars($podcast['name']) : 'Unknown Name';
@@ -229,29 +235,29 @@
 
                 echo '
                 <div class="col-md-6 col-xl-4">
-                    <li class="single-item" style="height: 380px !important">
-                        <a data-link data-title="' . $name . '" data-artist="AudioPizza"
-                           data-img="' . $image_url . '"
-                           href="' . $music_url . '" class="single-item__cover">
-                           <img src="' . $image_url . '" alt="' . $name . '">
-                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                               <path d="M18.54,9,8.88,3.46a3.42,3.42,0,0,0-5.13,3V17.58A3.42,3.42,0,0,0,7.17,21a3.43,3.43,0,0,0,1.71-.46L18.54,15a3.42,3.42,0,0,0,0-5.92Zm-1,4.19L7.88,18.81a1.44,1.44,0,0,1-1.42,0,1.42,1.42,0,0,1-.71-1.23V6.42a1.42,1.42,0,0,1,.71-1.23A1.51,1.51,0,0,1,7.17,5a1.54,1.54,0,0,1,.71.19l9.66,5.58a1.42,1.42,0,0,1,0,2.46Z"/>
-                           </svg>
-                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                               <path d="M16,2a3,3,0,0,0-3,3V19a3,3,0,0,0,6,0V5A3,3,0,0,0,16,2Zm1,17a1,1,0,0,1-2,0V5a1,1,0,0,1,2,0ZM8,2A3,3,0,0,0,5,5V19a3,3,0,0,0,6,0V5A3,3,0,0,0,8,2ZM9,19a1,1,0,0,1-2,0V5A1,1,0,0,1,9,5Z"/>
-                           </svg>
-                       </a>
-                       <div class="single-item__title">
-                           <h4 style="color: #C1252F">' . $name . '</h4>
-                           <p style="font-size: 12px;">' . $description . '</p>
-                       </div>
-                      <div class="share">
-                          <span style="cursor: pointer" class="whatsapp" id="whatsapp-share-' . $index . '"><ion-icon name="logo-whatsapp"></ion-icon></span>
-                          <span style="cursor: pointer" class="facebook" id="facebook-share-' . $index . '"><ion-icon name="logo-facebook"></ion-icon></span>
-                          <span style="cursor: pointer" class="twitter" id="twitter-share-' . $index . '"><i class="fa-brands fa-x-twitter"></i></span>
-                      </div>
-                   </li>
-               </div>';
+                  <li class="single-item" style="height: 380px !important">
+                    <a data-link data-title="' . $name . '" data-artist="AudioPizza"
+                       data-img="' . $image_url . '"
+                       href="' . $music_url . '" class="single-item__cover">
+                       <img src="' . $image_url . '" alt="' . $name . '">
+                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                           <path d="M18.54,9,8.88,3.46a3.42,3.42,0,0,0-5.13,3V17.58A3.42,3.42,0,0,0,7.17,21a3.43,3.43,0,0,0,1.71-.46L18.54,15a3.42,3.42,0,0,0,0-5.92Zm-1,4.19L7.88,18.81a1.44,1.44,0,0,1-1.42,0,1.42,1.42,0,0,1-.71-1.23V6.42a1.42,1.42,0,0,1,.71-1.23A1.51,1.51,0,0,1,7.17,5a1.54,1.54,0,0,1,.71.19l9.66,5.58a1.42,1.42,0,0,1,0,2.46Z"/>
+                       </svg>
+                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                           <path d="M16,2a3,3,0,0,0-3,3V19a3,3,0,0,0,6,0V5A3,3,0,0,0,16,2Zm1,17a1,1,0,0,1-2,0V5a1,1,0,0,1,2,0ZM8,2A3,3,0,0,0,5,5V19a3,3,0,0,0,6,0V5A3,3,0,0,0,8,2ZM9,19a1,1,0,0,1-2,0V5A1,1,0,0,1,9,5Z"/>
+                       </svg>
+                    </a>
+                    <div class="single-item__title">
+                      <h4 style="color: #C1252F">' . $name . '</h4>
+                      <p style="font-size: 12px;">' . $description . '</p>
+                    </div>
+                    <div class="share">
+                      <span style="cursor: pointer" class="whatsapp" id="whatsapp-share-' . $index . '"><ion-icon name="logo-whatsapp"></ion-icon></span>
+                      <span style="cursor: pointer" class="facebook" id="facebook-share-' . $index . '"><ion-icon name="logo-facebook"></ion-icon></span>
+                      <span style="cursor: pointer" class="twitter" id="twitter-share-' . $index . '"><i class="fa-brands fa-x-twitter"></i></span>
+                    </div>
+                  </li>
+                </div>';
             }
         } else {
             echo '<p>No podcasts available at the moment.</p>';
@@ -259,6 +265,7 @@
     }
     ?>
 </section>
+
 
 		</div>
 	</main>
@@ -390,6 +397,16 @@
     addShareListeners(facebookShares, "facebook");
     addShareListeners(twitterShares, "twitter");
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+  const toggleButton = document.querySelector('.header__toggle');
+  const nav = document.querySelector('.header__nav');
+
+  toggleButton.addEventListener('click', function() {
+    nav.classList.toggle('header__nav--open');
+  });
+});
+
 
 </script>
 

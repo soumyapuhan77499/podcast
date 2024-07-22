@@ -252,6 +252,7 @@ body::-webkit-scrollbar-thumb {
   border-bottom: 2px solid #e6eaf2;
   z-index: 101;
 }
+
 .header__content {
   display: flex;
   flex-direction: row;
@@ -262,6 +263,58 @@ body::-webkit-scrollbar-thumb {
   position: relative;
   padding: 0 15px;
 }
+
+.header__nav {
+  display: flex;
+  flex-direction: row;
+}
+.header__nav a {
+  margin-left: 20px;
+  text-decoration: none;
+  color: #000;
+}
+
+.header__toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .header__content {
+    flex-direction: row; /* Keep row layout */
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .header__nav {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    position: absolute;
+    top: 70px; /* Below the header */
+    left: 0;
+    background-color: #fff;
+    border-top: 2px solid #e6eaf2;
+    z-index: 100;
+  }
+
+  .header__nav a {
+    margin: 10px 0;
+    padding: 10px 15px; /* Add padding for better click area */
+  }
+
+  .header__toggle {
+    display: block;
+  }
+
+  .header__nav--open {
+    display: flex;
+  }
+}
+
 .header__logo {
   display: inline-flex;
   flex-direction: row;
@@ -456,9 +509,7 @@ body::-webkit-scrollbar-thumb {
 .header__search--active {
   top: 0;
 }
-.header__nav {
-  display: none;
-}
+
 .header__drop {
   position: absolute;
   top: 100%;
@@ -2541,9 +2592,8 @@ body::-webkit-scrollbar-thumb {
   margin-top: 20px;
   border: 2px solid #e6eaf2;
   background-color: #fff;
-  padding: 20px;
+  padding: 15px;
   border-radius: 20px;
-  position: release;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -2553,24 +2603,23 @@ body::-webkit-scrollbar-thumb {
 }
 .store-item__cover {
   display: block;
-  position: release;
-  width:100%;
-  height:250px;
+  width: 100%;
+  height: 250px;
   border-radius: 20px;
   overflow: hidden;
 }
 .store-item__cover img {
   width: 100%;
   height: 100%;
+  object-fit: cover;
 }
 .store-item__description {
-  position: relative;
   width: 100%;
   margin-top: 20px;
 }
 .store-item__buy {
   width: 100%;
-  height: 50px;
+  height: 45px;
   border-radius: 25px;
   background-color: #f65656;
   display: flex;
@@ -2579,8 +2628,6 @@ body::-webkit-scrollbar-thumb {
   align-items: center;
   color: #fff;
   font-size: 14px;
-  position: relative;
-  z-index: 2;
   text-transform: uppercase;
   font-family: 'Roboto', sans-serif;
   font-weight: 400;
@@ -2589,7 +2636,7 @@ body::-webkit-scrollbar-thumb {
 }
 .store-item__buy svg {
   fill: #0e2d49;
-  width: 28px;
+  width: 24px;
   height: auto;
   margin-right: 7px;
 }
@@ -2602,7 +2649,6 @@ body::-webkit-scrollbar-thumb {
   display: block;
 }
 .store-item__carousel {
-  position: relative;
   width: 100%;
 }
 .store-item__carousel .owl-dots {
@@ -2612,7 +2658,6 @@ body::-webkit-scrollbar-thumb {
   align-items: center;
   width: 100%;
   margin-top: 20px;
-  position: relative;
 }
 .store-item__carousel .owl-dot {
   margin-right: 10px;
@@ -2632,6 +2677,8 @@ body::-webkit-scrollbar-thumb {
   width: 20px;
   background-color: #0e2d49;
 }
+
+/* Medium devices (tablets, 768px and up) */
 @media (min-width: 768px) {
   .store-item {
     flex-direction: row;
@@ -2645,6 +2692,8 @@ body::-webkit-scrollbar-thumb {
     margin-right: 20px;
   }
 }
+
+/* Large devices (desktops, 1200px and up) */
 @media (min-width: 1200px) {
   .store-item__description {
     width: calc(100% - 310px);
@@ -2653,6 +2702,32 @@ body::-webkit-scrollbar-thumb {
     width: 290px;
   }
 }
+
+/* Small devices (mobiles, 600px and below) */
+@media (max-width: 600px) {
+  .store-item {
+    padding: 10px;
+    margin-top: 15px;
+  }
+  .store-item__cover {
+    height: 200px;
+  }
+  .store-item__buy {
+    height: 40px;
+    font-size: 12px;
+    padding: 0 15px;
+  }
+  .store-item__buy svg {
+    width: 20px;
+  }
+  .store-item__description {
+    margin-top: 15px;
+  }
+  .store-item__carousel .owl-dots {
+    margin-top: 15px;
+  }
+}
+
 /*==============================
 	Artist
 ==============================*/
@@ -4675,14 +4750,61 @@ body::-webkit-scrollbar-thumb {
 ==============================*/
 .share_banner {
   position: absolute; /* Position the share container absolutely */
-  bottom: -114px; /* Distance from the bottom of the parent container */
-  right: 10px; /* Distance from the right of the parent container */
+  bottom: 4px; /* Distance from the bottom of the parent container */
+  right: 33px; /* Distance from the right of the parent container */
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: flex-start;
   flex-wrap: wrap;
   width: auto; /* Adjust width as needed */
+}
+
+@media (max-width: 768px) {
+  .store-item__description {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  .article__content {
+    order: 1;
+    font-size: 14px; /* Decrease font size */
+  }
+
+  .article__content h4 {
+    font-size: 18px; /* Adjust heading font size */
+  }
+  .share_banner{
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content:center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+    right: 0px;
+  }
+  .store-item {
+    height: 415px;
+    
+}
+
+
+  .share_banner span {
+    font-size: 30px; /* Adjust icon size if needed */
+  }
+
+  .article__content p {
+    order: 3;
+    font-size: 14px; /* Adjust paragraph font size */
+    text-align: center; /* Center align the text */
+    margin-top: 10px; /* Add spacing */
+  }
+}
+
+@media (max-width: 350px) {
+
 }
 .whatsapp{
   font-size: 30px;
@@ -5093,7 +5215,7 @@ section .container .card-inner:hover .iconBox {
     gap: 0.5rem;
   }
   .footer {
-    background-image: url('../img/footer.png');
+    background-image: url('../img/store/footer.jpg');
     background-repeat: no-repeat;
     /* background-position: top left; */
     background-size: cover;
@@ -5122,7 +5244,7 @@ section .container .card-inner:hover .iconBox {
     gap: 0.25rem;
   }
   .footer {
-    background-image: url('../img/footer.png');
+    background-image: url('../img/store/footer.jpg');
     background-repeat: no-repeat;
     /* background-position: top left; */
     background-size: cover;
@@ -5136,7 +5258,7 @@ section .container .card-inner:hover .iconBox {
 @media (max-width: 500px) {
   
   .footer {
-    background-image: url('../img/footer.png');
+    background-image: url('../img/store/footer.jpg');
     background-repeat: no-repeat;
     /* background-position: top left; */
     background-size: cover;
@@ -5150,7 +5272,7 @@ section .container .card-inner:hover .iconBox {
 @media (max-width: 420px) {
   
   .footer {
-    background-image: url('../img/footer.png');
+    background-image: url('../img/store/footer.jpg');
     background-repeat: no-repeat;
     /* background-position: top left; */
     background-size: cover;
