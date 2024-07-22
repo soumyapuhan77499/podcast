@@ -4675,7 +4675,7 @@ body::-webkit-scrollbar-thumb {
 ==============================*/
 .share_banner {
   position: absolute; /* Position the share container absolutely */
-  bottom: -130px; /* Distance from the bottom of the parent container */
+  bottom: -114px; /* Distance from the bottom of the parent container */
   right: 10px; /* Distance from the right of the parent container */
   display: flex;
   flex-direction: row;
