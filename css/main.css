@@ -4439,6 +4439,8 @@ body::-webkit-scrollbar-thumb {
 .article__content {
   position: relative;
 }
+
+
 .article__content img {
   display: block;
   width: 100%;

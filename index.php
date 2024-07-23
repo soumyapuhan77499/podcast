@@ -59,8 +59,7 @@
 		</div>
 		<div class="player__content">
 			<span class="player__track">
-				<b class="player__title">Epic Cinematic</b> –
-				<span class="player__artist">Podcast</span>
+				<b class="player__title">Select Podcast</b>
 			</span>
 			<audio
 				src="https://dmitryvolkov.me/demo/blast2.0/audio/12071151_epic-cinematic-trailer_by_audiopizza_preview.mp3"
