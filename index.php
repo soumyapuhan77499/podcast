@@ -233,7 +233,7 @@
                 $image_url = isset($podcast['image_url']) ? htmlspecialchars($podcast['image_url']) : 'default-image.png';
                 $music_url = isset($podcast['music_url']) ? htmlspecialchars($podcast['music_url']) : '#';
 
-                echo '
+                echo'
                 <div class="col-md-6 col-xl-4">
                   <li class="single-item" style="height: 380px !important">
                     <a data-link data-title="' . $name . '" data-artist="AudioPizza"
