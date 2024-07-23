@@ -78,7 +78,7 @@
 	<!-- main content -->
 	<main class="main">
 		<div class="container">
-        <section class="row row--grid">
+    <section class="row row--grid">
     <div class="col-12">
         <?php
         // Initialize cURL session
@@ -150,19 +150,18 @@
                         </a>
                     </div>
                 </div>
-               <div class="store-item__description">
-                        <div class="article__content">
-                          <h4 style="color: #C1252F">' . $name . '</h4>
-                          <p style="color: black">' . $description . '</p>
-                         </div>
- 
-                        <div class="share_banner">
-                          <span style="cursor: pointer" class="whatsapp" id="whatsapp-share" data-url="' . $music_url . '"><ion-icon name="logo-whatsapp"></ion-icon></span>
-                          <span style="cursor: pointer" class="facebook" id="facebook-share" data-url="' . $music_url . '"><ion-icon name="logo-facebook"></ion-icon></span>
-                          <span style="cursor: pointer" class="twitter" id="twitter-share" data-url="' . $music_url . '"><i class="fa-brands fa-x-twitter"></i></span>
-                        </div>
-                      </div>
+                <div class="store-item__description">
+                    <div class="article__content">
+                        <h4 style="color: #C1252F">' . $name . '</h4>
+                        <p style="color: black">' . $description . '</p>
+                    </div>
 
+                    <div class="share_banner">
+                        <span style="cursor: pointer" class="whatsapp" id="whatsapp-share"><ion-icon name="logo-whatsapp"></ion-icon></span>
+                        <span style="cursor: pointer" class="facebook" id="facebook-share"><ion-icon name="logo-facebook"></ion-icon></span>
+                        <span style="cursor: pointer" class="twitter" id="twitter-share"><i class="fa-brands fa-x-twitter"></i></span>
+                    </div>
+                </div>
             </div>';
         }
         ?>
@@ -267,6 +266,7 @@
 </section>
 
 
+
 		</div>
 	</main>
 	<!-- end main content -->
@@ -333,7 +333,7 @@
 	<!-- JS -->
 
     <script>
-  document.addEventListener("DOMContentLoaded", function () {
+ document.addEventListener("DOMContentLoaded", function () {
     // Get all share icons
     var whatsappShare = document.querySelectorAll("#whatsapp-share");
     var facebookShare = document.querySelectorAll("#facebook-share");
@@ -343,15 +343,15 @@
     function addShareListeners(shares, platform) {
         shares.forEach(function (share) {
             share.addEventListener("click", function () {
-                var podcastUrl = share.getAttribute("data-url");
+                var pageUrl = window.location.href;
                 var shareUrl;
 
                 if (platform === "whatsapp") {
-                    shareUrl = "https://wa.me/?text=" + encodeURIComponent(podcastUrl);
+                    shareUrl = "https://wa.me/?text=" + encodeURIComponent(pageUrl);
                 } else if (platform === "facebook") {
-                    shareUrl = "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(podcastUrl);
+                    shareUrl = "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(pageUrl);
                 } else if (platform === "twitter") {
-                    shareUrl = "https://twitter.com/intent/tweet?url=" + encodeURIComponent(podcastUrl);
+                    shareUrl = "https://twitter.com/intent/tweet?url=" + encodeURIComponent(pageUrl);
                 }
 
                 window.open(shareUrl, "_blank");
@@ -365,8 +365,7 @@
     addShareListeners(twitterShare, "twitter");
 });
 
-
-    document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function () {
     // Get all share icons
     var whatsappShares = document.querySelectorAll("[id^='whatsapp-share-']");
     var facebookShares = document.querySelectorAll("[id^='facebook-share-']");
@@ -377,14 +376,15 @@
         shares.forEach(function (share) {
             share.addEventListener("click", function () {
                 var podcastUrl = share.closest("li").querySelector("a.single-item__cover").href;
+                var currentPageUrl = window.location.href;
                 var shareUrl;
 
                 if (platform === "whatsapp") {
-                    shareUrl = "https://wa.me/?text=" + encodeURIComponent(podcastUrl);
+                    shareUrl = "https://wa.me/?text=" + encodeURIComponent(currentPageUrl);
                 } else if (platform === "facebook") {
-                    shareUrl = "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(podcastUrl);
+                    shareUrl = "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(currentPageUrl);
                 } else if (platform === "twitter") {
-                    shareUrl = "https://twitter.com/intent/tweet?url=" + encodeURIComponent(podcastUrl);
+                    shareUrl = "https://twitter.com/intent/tweet?url=" + encodeURIComponent(currentPageUrl);
                 }
 
                 window.open(shareUrl, "_blank");
@@ -397,6 +397,7 @@
     addShareListeners(facebookShares, "facebook");
     addShareListeners(twitterShares, "twitter");
 });
+
 
 document.addEventListener('DOMContentLoaded', function() {
   const toggleButton = document.querySelector('.header__toggle');
