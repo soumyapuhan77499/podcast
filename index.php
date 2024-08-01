@@ -54,31 +54,30 @@
 
 	<!-- end sidebar -->
 	<div class="player">
-		<div class="player__cover">
-			<img src="img/covers/cover.svg" alt="">
-		</div>
-		<div class="player__content">
-			<span class="player__track">
-				<b class="player__title">Select Podcast</b>
-			</span>
-			<audio
-				src="https://dmitryvolkov.me/demo/blast2.0/audio/12071151_epic-cinematic-trailer_by_audiopizza_preview.mp3"
-				id="audio" controls></audio>
-		</div>
-	</div>
+  <div class="player__cover">
+    <img src="img/covers/cover.svg" alt="">
+  </div>
+  <div class="player__content">
+    <span class="player__track">
+      <b class="player__title">Select Podcast</b>
+    </span>
+    <audio
+      src="https://dmitryvolkov.me/demo/blast2.0/audio/12071151_epic-cinematic-trailer_by_audiopizza_preview.mp3"
+      id="audio" controls></audio>
+  </div>
+</div>
 
 
-	<button class="player__btn" type="button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-			<path
-				d="M21.65,2.24a1,1,0,0,0-.8-.23l-13,2A1,1,0,0,0,7,5V15.35A3.45,3.45,0,0,0,5.5,15,3.5,3.5,0,1,0,9,18.5V10.86L20,9.17v4.18A3.45,3.45,0,0,0,18.5,13,3.5,3.5,0,1,0,22,16.5V3A1,1,0,0,0,21.65,2.24ZM5.5,20A1.5,1.5,0,1,1,7,18.5,1.5,1.5,0,0,1,5.5,20Zm13-2A1.5,1.5,0,1,1,20,16.5,1.5,1.5,0,0,1,18.5,18ZM20,7.14,9,8.83v-3L20,4.17Z" />
-		</svg> Player</button>
+	<button class="player__btn" type="button">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M21.65,2.24a1,1,0,0,0-.8-.23l-13,2A1,1,0,0,0,7,5V15.35A3.45,3.45,0,0,0,5.5,15,3.5,3.5,0,1,0,9,18.5V10.86L20,9.17v4.18A3.45,3.45,0,0,0,18.5,13,3.5,3.5,0,1,0,22,16.5V3A1,1,0,0,0,21.65,2.24ZM5.5,20A1.5,1.5,0,1,1,7,18.5,1.5,1.5,0,0,1,5.5,20Zm13-2A1.5,1.5,0,1,1,20,16.5,1.5,1.5,0,0,1,18.5,18ZM20,7.14,9,8.83v-3L20,4.17Z"/>
+  </svg>
+  Player
+</button>
 	<!-- end player -->
-
-	<!-- main content -->
-	<main class="main">
-		<div class="container">
-    <section class="row row--grid">
-    <div class="col-12">
+  <section class="row row--grid">
+  <div class="col-12 d-flex justify-content-center align-items-center" style="background-color: #C1252F;padding: 70px">
+  <div class="col-10">
         <?php
         // Initialize cURL session
         $curl = curl_init();
@@ -99,7 +98,7 @@
         $response = curl_exec($curl);
 
         // Check for cURL errors
-        if(curl_errno($curl)) {
+        if (curl_errno($curl)) {
             echo 'cURL error: ' . curl_error($curl);
             curl_close($curl);
             exit;
@@ -151,22 +150,37 @@
                 </div>
                 <div class="store-item__description">
                     <div class="article__content">
-                        <h4 style="color: #C1252F">' . $name . '</h4>
+                        <h4 style="text-shadow: 10px 12px 20px rgba(10,0,0,0.6);color: #C1252F;font-size: 40px;font-weight: bold;font-family: Times New Roman, serif">' . $name . '</h4>
                         <p style="color: black">' . $description . '</p>
                     </div>
-
+                      <div style="height: 70px; width: 250px">
+                      <img id="music-gif" src="img/events/music2.webp" alt="Music playing" style="width: 100%; height: 100%; display: none">
+                      <img id="pause-image" src="img/events/music3.png" alt="Music paused" style="width: 100%; height: 100%;>
+                   </div>
+                
                     <div class="share_banner">
-                        <span style="cursor: pointer" class="whatsapp" id="whatsapp-share"><ion-icon name="logo-whatsapp"></ion-icon></span>
-                        <span style="cursor: pointer" class="facebook" id="facebook-share"><ion-icon name="logo-facebook"></ion-icon></span>
-                        <span style="cursor: pointer" class="twitter" id="twitter-share"><i class="fa-brands fa-x-twitter"></i></span>
+                        <span style="cursor: pointer" class="whatsapp" id="whatsapp-share">
+                            <ion-icon name="logo-whatsapp"></ion-icon>
+                        </span>
+                        <span style="cursor: pointer" class="facebook" id="facebook-share">
+                            <ion-icon name="logo-facebook"></ion-icon>
+                        </span>
+                        <span style="cursor: pointer" class="twitter" id="twitter-share">
+                            <i class="fa-brands fa-x-twitter"></i>
+                        </span>
                     </div>
+                    
                 </div>
             </div>';
         }
         ?>
     </div>
+    </div>
+     
 </section>
-
+	<!-- main content -->
+	<main class="main">
+		<div class="container">
 <section class="row row--grid">
     <div class="col-12" style="margin-bottom: 30px;">
         <div class="main__title">
@@ -246,8 +260,8 @@
                        </svg>
                     </a>
                     <div class="single-item__title">
-                      <h4 style="color: #C1252F">' . $name . '</h4>
-                      <p style="font-size: 12px;">' . $description . '</p>
+                      <h4 style="font-weight: bold;color: #C1252F;font-size: 18px">' . $name . '</h4>
+                      <p style="font-size: 14px;font-weight: bold;">' . $description . '</p>
                     </div>
                     <div class="share">
                       <span style="cursor: pointer" class="whatsapp" id="whatsapp-share-' . $index . '"><ion-icon name="logo-whatsapp"></ion-icon></span>
@@ -265,8 +279,7 @@
 </section>
 
 
-
-		</div>
+  </div>
 	</main>
 	<!-- end main content -->
 
@@ -407,6 +420,29 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 
+document.addEventListener('DOMContentLoaded', function() {
+  const audioPlayer = document.getElementById('audio');
+  const musicGif = document.getElementById('music-gif');
+  const pauseImage = document.getElementById('pause-image');
+
+  // Show GIF when audio is playing
+  audioPlayer.addEventListener('play', function() {
+    musicGif.style.display = 'block';
+    pauseImage.style.display = 'none'; // Hide pause image when playing
+  });
+
+  // Show pause image and hide GIF when audio is paused
+  audioPlayer.addEventListener('pause', function() {
+    musicGif.style.display = 'none';
+    pauseImage.style.display = 'block'; // Show pause image
+  });
+
+  // Hide both images when audio ends
+  audioPlayer.addEventListener('ended', function() {
+    musicGif.style.display = 'none';
+    pauseImage.style.display = 'none';
+  });
+});
 
 </script>
 
